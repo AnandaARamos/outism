@@ -1,0 +1,482 @@
+-- Copiando estrutura do banco de dados para outism
+CREATE DATABASE IF NOT EXISTS `outism` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `outism`;
+
+SET foreign_key_checks = 0;
+
+-- Copiando estrutura para tabela outism.addresses
+CREATE TABLE IF NOT EXISTS `addresses` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `city_id` int NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `neighborhood` varchar(45) DEFAULT NULL,
+  `picture` text,
+  `street` varchar(45) DEFAULT NULL,
+  `street2` varchar(45) DEFAULT NULL,
+  `zipcode` varchar(45) DEFAULT NULL,
+  `lat` varchar(255) DEFAULT NULL,
+  `lng` varchar(255) DEFAULT NULL,
+  `radius` double DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_addresses_cities1_idx` (`city_id`),
+  CONSTRAINT `fk_addresses_cities1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.addresses: ~30 rows (aproximadamente)
+/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+INSERT IGNORE INTO `addresses` (`id`, `city_id`, `name`, `neighborhood`, `picture`, `street`, `street2`, `zipcode`, `lat`, `lng`, `radius`, `created_at`, `modified_at`) VALUES
+	(1, 11, NULL, 'Kaluga Oblast', NULL, '5289 Est Street', '774-7885 Cras Road', '54039-42627', '83.5565082624', '-9.124657152', 7, NULL, NULL),
+	(2, 2, NULL, 'Odisha', NULL, 'Ap #695-7595 Est, Av.', '997 Vivamus St.', '29-607', '-47.9383556096', '54.4223167488', 6, NULL, NULL),
+	(3, 11, NULL, 'Franche-Comté', NULL, '528-9117 Ornare Rd.', 'Ap #356-8688 Diam. Rd.', '5149', '75.1550345216', '-118.3967225856', 8, NULL, NULL),
+	(4, 21, NULL, 'Puno', NULL, '404 Sagittis Rd.', '8038 Non Av.', '606120', '-87.854838784', '149.5979015168', 6, NULL, NULL),
+	(5, 21, NULL, 'Missouri', NULL, '753-3950 Arcu. Avenue', 'Ap #833-3717 Nisi. Rd.', '5286', '33.4439981056', '135.683068416', 6, NULL, NULL),
+	(6, 21, NULL, 'South Island', NULL, '9970 Penatibus Rd.', '8523 Ultrices. Avenue', '3623', '4.4691350528', '101.0908540928', 5, NULL, NULL),
+	(7, 41, NULL, 'Upper Austria', NULL, 'Ap #708-4318 Vivamus Rd.', '522-3948 Suspendisse Av.', '244591', '-78.045108736', '-126.2296511488', 6, NULL, NULL),
+	(8, 31, NULL, 'Stockholms län', NULL, '5439 Nulla Ave', '170 Diam Rd.', '655557', '-46.8553796608', '-159.4339334144', 6, NULL, NULL),
+	(9, 31, NULL, 'Zachodniopomorskie', NULL, '772-8707 Dictum. Ave', '1554 Accumsan Rd.', '9431', '-64.0740661248', '-41.761638912', 7, NULL, NULL),
+	(10, 41, NULL, 'Hertfordshire', NULL, '7302 Risus. Rd.', '275-5063 Faucibus St.', '639288', '-85.5497806848', '163.6783747072', 9, NULL, NULL),
+	(11, 51, NULL, 'Meghalaya', NULL, '9142 Vivamus Rd.', '911-2095 Nunc St.', '444882', '55.5276539904', '-68.726243328', 8, NULL, NULL),
+	(12, 61, NULL, 'Khánh Hòa', NULL, 'P.O. Box 256, 5253 Non Rd.', '167-6918 Arcu Rd.', '82819', '-24.9434094592', '-10.379229696', 6, NULL, NULL),
+	(13, 51, NULL, 'Northern Territory', NULL, '5841 Amet Road', 'P.O. Box 173, 3962 Elit, Street', '36341856', '54.8711066624', '150.3623354368', 8, NULL, NULL),
+	(14, 51, NULL, 'Niedersachsen', NULL, '422-7909 Eu, Avenue', '179-3243 Rutrum Rd.', '688285', '-78.243744768', '-134.7080531968', 8, NULL, NULL),
+	(15, 61, NULL, 'Antioquia', NULL, 'Ap #415-3803 Lacinia Road', '811-8560 Ultrices. Ave', '38548', '-4.5062766592', '-103.231039488', 6, NULL, NULL),
+	(16, 61, NULL, 'South Kalimantan', NULL, 'Ap #784-8307 Convallis, Av.', 'Ap #257-135 Ut, Rd.', '9133', '-41.9896378368', '72.0629206016', 6, NULL, NULL),
+	(17, 81, NULL, 'Munster', NULL, 'P.O. Box 316, 4030 Eget Rd.', 'Ap #889-4018 Auctor Avenue', '00646', '-66.315754496', '18.9448553472', 8, NULL, NULL),
+	(18, 81, NULL, 'Dōngběi', NULL, 'Ap #893-3754 Ac St.', '717-4661 Nec St.', '635626', '1.1650052096', '-20.0706701312', 8, NULL, NULL),
+	(19, 11, NULL, 'Sevastopol City', NULL, 'P.O. Box 627, 7638 Fusce Avenue', 'Ap #860-2156 Molestie. Av.', '743714', '-44.5151920128', '129.8777501696', 8, NULL, NULL),
+	(20, 71, NULL, 'Ulster', NULL, '409-676 Ut St.', '284-9940 Varius Av.', 'T8P 7E3', '-73.5039307776', '87.4229960704', 6, NULL, NULL),
+	(21, 141, NULL, 'Surrey', NULL, 'P.O. Box 768, 9381 Leo Av.', 'Ap #584-1049 Eu St.', 'R7A 8A9', '-37.2019196928', '152.7023691776', 6, NULL, NULL),
+	(22, 151, NULL, 'Nebraska', NULL, 'P.O. Box 134, 6362 Erat. Rd.', '3870 Dapibus St.', '24477', '-30.0810181632', '-115.5457200128', 7, NULL, NULL),
+	(23, 161, NULL, 'La Guajira', NULL, '361-4094 Ornare Rd.', 'Ap #411-8646 Ultrices. St.', '128376', '0.4169219072', '52.4915613696', 9, NULL, NULL),
+	(24, 171, NULL, 'Odisha', NULL, '362 Eu, St.', '925-9795 Sed St.', '24569', '3.3833305088', '-141.8992754688', 9, NULL, NULL),
+	(25, 181, NULL, 'North Maluku', NULL, 'P.O. Box 462, 3256 Tristique Rd.', 'Ap #327-5169 Euismod Rd.', '08955', '-84.5737281536', '58.1282205696', 10, NULL, NULL),
+	(26, 191, NULL, 'Ivanovo Oblast', NULL, '584-250 Duis Avenue', 'Ap #375-2263 Sapien St.', '4847', '-24.8638212096', '-63.0451017728', 7, NULL, NULL),
+	(27, 141, NULL, 'East Java', NULL, 'Ap #402-4087 Facilisis St.', '7250 Etiam Road', '5022', '27.359619072', '62.7363688448', 7, NULL, NULL),
+	(28, 131, NULL, 'Alberta', NULL, 'P.O. Box 315, 7790 Duis Street', '1381 Congue. Rd.', '11627', '8.6903899136', '24.5688927232', 10, NULL, NULL),
+	(29, 121, NULL, 'Navarra', NULL, 'Ap #944-5635 Nunc Street', '514-5959 Et Road', '41603', '80.439146496', '-137.5358467072', 9, NULL, NULL),
+	(30, 111, NULL, 'North Maluku', NULL, 'Ap #754-1922 Vel, Avenue', 'Ap #162-5016 Ut, Avenue', '58652', '85.6958931968', '-168.1494025216', 7, NULL, NULL);
+/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.benefits
+CREATE TABLE IF NOT EXISTS `benefits` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `place_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_benefits_places1_idx` (`place_id`),
+  CONSTRAINT `fk_benefits_places1` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.benefits: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `benefits` DISABLE KEYS */;
+/*!40000 ALTER TABLE `benefits` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.categories
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.categories: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT IGNORE INTO `categories` (`id`, `name`, `description`, `created_at`, `modified_at`) VALUES
+	(1, 'restaurante', 'felis. Nulla tempor augue ac', NULL, NULL),
+	(2, 'praça', 'ornare, elit elit fermentum risus,', NULL, NULL),
+	(3, 'comércio', 'Suspendisse commodo tincidunt nibh. Phasellus', NULL, NULL);
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.cities
+CREATE TABLE IF NOT EXISTS `cities` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `state_id` int NOT NULL,
+  `name` varchar(60) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cities_states_idx` (`state_id`),
+  CONSTRAINT `fk_cities_states` FOREIGN KEY (`state_id`) REFERENCES `states` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.cities: ~20 rows (aproximadamente)
+/*!40000 ALTER TABLE `cities` DISABLE KEYS */;
+INSERT IGNORE INTO `cities` (`id`, `state_id`, `name`, `created_at`, `modified_at`) VALUES
+	(1, 7, 'Saint-Quentin', NULL, NULL),
+	(11, 11, 'Anamur', NULL, NULL),
+	(21, 4, 'Vĩnh Trụ', NULL, NULL),
+	(31, 1, 'Hohenems', NULL, NULL),
+	(41, 4, 'Szczecin', NULL, NULL),
+	(51, 4, 'Cuglieri', NULL, NULL),
+	(61, 3, 'Heilongjiang', NULL, NULL),
+	(71, 11, 'Rae Bareli', NULL, NULL),
+	(81, 15, 'Rio Grande', NULL, NULL),
+	(91, 11, 'Sicuani', NULL, NULL),
+	(101, 13, 'Moncton', NULL, NULL),
+	(111, 12, 'Gunsan', NULL, NULL),
+	(121, 12, 'Arequipa', NULL, NULL),
+	(131, 13, 'Jiutepec', NULL, NULL),
+	(141, 15, 'Picton', NULL, NULL),
+	(151, 1, 'Tywyn', NULL, NULL),
+	(161, 11, 'Mérida', NULL, NULL),
+	(171, 5, 'Jaboatão dos Guararapes', NULL, NULL),
+	(181, 12, 'Amersfoort', NULL, NULL),
+	(191, 5, 'Getafe', NULL, NULL);
+/*!40000 ALTER TABLE `cities` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.corporates
+CREATE TABLE IF NOT EXISTS `corporates` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `logo` text,
+  `name` varchar(45) DEFAULT NULL,
+  `corporate_name` varchar(75) DEFAULT NULL,
+  `cnpj` varchar(14) DEFAULT NULL,
+  `email` varchar(75) DEFAULT NULL,
+  `homepage` varchar(75) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.corporates: ~21 rows (aproximadamente)
+/*!40000 ALTER TABLE `corporates` DISABLE KEYS */;
+INSERT IGNORE INTO `corporates` (`id`, `logo`, `name`, `corporate_name`, `cnpj`, `email`, `homepage`, `created_at`, `modified_at`) VALUES
+	(1, '3.2926197022444414e28', 'Eros Nam Corp.', 'Eros Nam Corporation Group', '45258099684486', 'quis.diam@icloud.ca', 'purus,', NULL, NULL),
+	(2, '3.54294488879451e28', 'Nibh Company', 'Nibh Company of United States', '78344036798335', 'proin.vel@aol.ca', 'felis.', NULL, NULL),
+	(3, '1.9249678945081374e28', 'Urna Suscipit Nonummy Foundation', 'Urna Suscipit Nonummy Foundation', '92260949315918', 'malesuada.malesuada@aol.edu', 'lectus', NULL, NULL),
+	(4, '9.77463118513782e28', 'Felis Orci Corp.', 'Felis Orci Corporation and Affiliates', '11697882091091', 'mus.aenean@protonmail.com', 'lorem', NULL, NULL),
+	(5, '7.088571885529134e28', 'Eget Varius Incorporated', 'Eget Varius Incorporated', '43570473989209', 'nisi.nibh@icloud.ca', 'Vestibulum', NULL, NULL),
+	(6, '3.044820433640786e28', 'Ultricies Inc.', 'Ultricies Inc.', '88577037535347', 'lacus.mauris.non@aol.net', 'pede,', NULL, NULL),
+	(7, '9.738690737198054e28', 'Urna Convallis Erat PC', 'Urna Convallis Erat PC', '87829229599009', 'nulla.semper@google.couk', 'volutpat.', NULL, NULL),
+	(8, '2.7547709592135475e28', 'Tortor Integer Corp.', 'Tortor Integer Corp.', '10535797278831', 'tempus.risus.donec@yahoo.couk', 'nec,', NULL, NULL),
+	(9, '7.017129952809415e28', 'Libero Et LLP', 'Libero Et LLP', '62617079277545', 'feugiat.lorem@aol.edu', 'iaculis,', NULL, NULL),
+	(10, '6.710413994210977e28', 'Nulla Facilisi Corporation', 'Nulla Facilisi Corporation', '89106356561610', 'dolor.nulla@yahoo.com', 'Mauris', NULL, NULL),
+	(11, '4.599685585767374e28', 'Consequat PC', 'Consequat PC', '94281974657030', 'tellus.nunc@hotmail.com', 'varius', NULL, NULL),
+	(12, '9.31079179963797e28', 'Donec LLP', 'Donec LLP', '26765653564164', 'morbi@outlook.couk', 'sed', NULL, NULL),
+	(13, '7.031356175999395e28', 'Congue LLC', 'Congue LLC', '61021109512440', 'odio.tristique@yahoo.com', 'at', NULL, NULL),
+	(14, '4.0745554997992295e28', 'Amet Faucibus Consulting', 'Amet Faucibus Consulting', '68367747528895', 'pede.et@protonmail.edu', 'Integer', NULL, NULL),
+	(15, '4.426242597523518e28', 'Nam Ac Inc.', 'Nam Ac Inc.', '70482680533411', 'parturient.montes@google.com', 'nibh', NULL, NULL),
+	(16, '9.120574656695926e28', 'Nullam LLP', 'Nullam LLP', '62616163316968', 'convallis.erat@outlook.org', 'est', NULL, NULL),
+	(17, '6.456706305730997e28', 'Aliquam Foundation', 'Aliquam Foundation', '85097419857566', 'ac.risus.morbi@yahoo.couk', 'Nunc', NULL, NULL),
+	(18, '8.306104010596484e28', 'Ipsum Leo LLP', 'Ipsum Leo LLP', '50346983284798', 'lobortis.nisi.nibh@outlook.org', 'dui.', NULL, NULL),
+	(19, '1.4691105123729437e28', 'Magna Et Ipsum Foundation', 'Magna Et Ipsum Foundation', '68510521248865', 'erat@protonmail.couk', 'nonummy', NULL, NULL),
+	(20, '8.438356190040793e28', 'Parturient Montes Nascetur Associates', 'Parturient Montes Nascetur Associates', '76175061575141', 'ultrices.vivamus.rhoncus@aol.org', 'Integer', NULL, NULL),
+	(21, '9.507036395834209e28', 'Malesuada Incorporated', 'Malesuada Incorporated', '34793771977991', 'amet@icloud.edu', 'sociis', NULL, NULL);
+/*!40000 ALTER TABLE `corporates` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.corporates_places
+CREATE TABLE IF NOT EXISTS `corporates_places` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `corporate_id` int NOT NULL,
+  `place_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`,`corporate_id`,`place_id`),
+  KEY `fk_corporates_places_corporates1_idx` (`corporate_id`),
+  KEY `fk_corporates_places_places1_idx` (`place_id`),
+  CONSTRAINT `fk_corporates_places_corporates1` FOREIGN KEY (`corporate_id`) REFERENCES `corporates` (`id`),
+  CONSTRAINT `fk_corporates_places_places1` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.corporates_places: ~20 rows (aproximadamente)
+/*!40000 ALTER TABLE `corporates_places` DISABLE KEYS */;
+INSERT IGNORE INTO `corporates_places` (`id`, `corporate_id`, `place_id`, `created_at`, `modified_at`) VALUES
+	(1, 3, 9, NULL, NULL),
+	(2, 20, 5, NULL, NULL),
+	(3, 14, 9, NULL, NULL),
+	(4, 4, 6, NULL, NULL),
+	(5, 20, 15, NULL, NULL),
+	(6, 20, 10, NULL, NULL),
+	(7, 18, 8, NULL, NULL),
+	(8, 16, 3, NULL, NULL),
+	(9, 4, 12, NULL, NULL),
+	(10, 11, 9, NULL, NULL),
+	(11, 3, 9, NULL, NULL),
+	(12, 13, 11, NULL, NULL),
+	(13, 14, 3, NULL, NULL),
+	(14, 13, 12, NULL, NULL),
+	(15, 8, 4, NULL, NULL),
+	(16, 4, 8, NULL, NULL),
+	(17, 5, 2, NULL, NULL),
+	(18, 2, 7, NULL, NULL),
+	(19, 16, 10, NULL, NULL),
+	(20, 2, 4, NULL, NULL);
+/*!40000 ALTER TABLE `corporates_places` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.places
+CREATE TABLE IF NOT EXISTS `places` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `manager_id` int NOT NULL,
+  `address_id` int NOT NULL,
+  `cnpj` varchar(45) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `logo` text,
+  `type` enum('NGO','CORPORATE') DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_places_people1_idx` (`manager_id`),
+  KEY `fk_places_addresses1_idx` (`address_id`),
+  CONSTRAINT `fk_places_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
+  CONSTRAINT `fk_places_people1` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.places: ~15 rows (aproximadamente)
+/*!40000 ALTER TABLE `places` DISABLE KEYS */;
+INSERT IGNORE INTO `places` (`id`, `manager_id`, `address_id`, `cnpj`, `name`, `logo`, `type`, `description`, `created_at`, `modified_at`) VALUES
+	(1, 28, 28, '87824111636349', 'Dolor Limited', '7.257364263034016e30', 'NGO', NULL, NULL, NULL),
+	(2, 17, 6, '88993574008310', 'Rhoncus Id Industries', '6.243940472240524e30', 'NGO', NULL, NULL, NULL),
+	(3, 18, 11, '51452636931721', 'Lacinia Vitae Ltd', '7.671894695085961e30', 'CORPORATE', NULL, NULL, NULL),
+	(4, 11, 29, '10238039667445', 'Magnis Dis Parturient Consulting', '7.111571729949093e30', 'CORPORATE', NULL, NULL, NULL),
+	(5, 16, 5, '65165913230773', 'Dictum Eu Eleifend Limited', '3.036466668820879e30', 'CORPORATE', NULL, NULL, NULL),
+	(6, 14, 18, '61475416312402', 'Pellentesque Habitant LLC', '9.550192724482577e30', 'CORPORATE', NULL, NULL, NULL),
+	(7, 7, 9, '55368652523526', 'Iaculis Aliquet Inc.', '7.923969735098388e30', 'CORPORATE', NULL, NULL, NULL),
+	(8, 13, 9, '66494082973809', 'Facilisis Industries', '2.3598023389113202e30', 'CORPORATE', NULL, NULL, NULL),
+	(9, 21, 15, '12095903686954', 'Eu Tellus Inc.', '6.424050722942947e30', 'NGO', NULL, NULL, NULL),
+	(10, 14, 28, '80377282511012', 'Donec Feugiat Ltd', '1.5888381663414314e30', 'CORPORATE', NULL, NULL, NULL),
+	(11, 25, 14, '88167909663188', 'Aliquam Ornare Corporation', '4.117621408135614e30', 'CORPORATE', NULL, NULL, NULL),
+	(12, 26, 17, '77067644997440', 'Suspendisse Sagittis Consulting', '6.305876518413654e30', 'CORPORATE', NULL, NULL, NULL),
+	(13, 26, 25, '97403246114535', 'Odio Auctor Ltd', '1.3537486755231655e30', 'CORPORATE', NULL, NULL, NULL),
+	(14, 25, 27, '72627525000493', 'Ridiculus Mus Proin Corporation', '6.768920502669507e30', 'CORPORATE', NULL, NULL, NULL),
+	(15, 21, 23, '93478741803843', 'Aliquam Tincidunt Nunc Foundation', '7.421589470764274e30', 'CORPORATE', NULL, NULL, NULL);
+/*!40000 ALTER TABLE `places` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.places_categories
+CREATE TABLE IF NOT EXISTS `places_categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `place_id` int NOT NULL,
+  `category_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`,`place_id`,`category_id`),
+  KEY `fk_table1_places1_idx` (`place_id`),
+  KEY `fk_table1_categories1_idx` (`category_id`),
+  CONSTRAINT `fk_table1_categories1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `fk_table1_places1` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.places_categories: ~20 rows (aproximadamente)
+/*!40000 ALTER TABLE `places_categories` DISABLE KEYS */;
+INSERT IGNORE INTO `places_categories` (`id`, `place_id`, `category_id`, `created_at`, `modified_at`) VALUES
+	(1, 1, 3, NULL, NULL),
+	(2, 11, 1, NULL, NULL),
+	(3, 7, 1, NULL, NULL),
+	(4, 4, 2, NULL, NULL),
+	(5, 6, 2, NULL, NULL),
+	(6, 6, 3, NULL, NULL),
+	(7, 4, 2, NULL, NULL),
+	(8, 7, 3, NULL, NULL),
+	(9, 8, 3, NULL, NULL),
+	(10, 11, 1, NULL, NULL),
+	(11, 6, 2, NULL, NULL),
+	(12, 10, 3, NULL, NULL),
+	(13, 8, 3, NULL, NULL),
+	(14, 7, 3, NULL, NULL),
+	(15, 14, 3, NULL, NULL),
+	(16, 7, 2, NULL, NULL),
+	(17, 5, 3, NULL, NULL),
+	(18, 7, 2, NULL, NULL),
+	(19, 4, 2, NULL, NULL),
+	(20, 12, 2, NULL, NULL);
+/*!40000 ALTER TABLE `places_categories` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.places_ratings
+CREATE TABLE IF NOT EXISTS `places_ratings` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `place_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `rating` float NOT NULL DEFAULT '5',
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`,`place_id`,`user_id`),
+  KEY `fk_places_ratings_places1_idx` (`place_id`),
+  KEY `fk_places_ratings_users1_idx` (`user_id`),
+  CONSTRAINT `fk_places_ratings_places1` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`),
+  CONSTRAINT `fk_places_ratings_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.places_ratings: ~20 rows (aproximadamente)
+/*!40000 ALTER TABLE `places_ratings` DISABLE KEYS */;
+INSERT IGNORE INTO `places_ratings` (`id`, `place_id`, `user_id`, `rating`, `description`, `created_at`, `modified_at`) VALUES
+	(1, 10, 19, 3, 'Nulla facilisi. Sed neque. Sed', NULL, NULL),
+	(2, 7, 9, 4, 'pede. Cras vulputate velit eu', NULL, NULL),
+	(3, 13, 11, 3, 'pede blandit congue. In scelerisque', NULL, NULL),
+	(4, 8, 21, 1, 'mauris. Integer sem elit, pharetra', NULL, NULL),
+	(5, 12, 29, 1, 'feugiat non, lobortis quis, pede.', NULL, NULL),
+	(6, 10, 4, 3, 'orci. Donec nibh. Quisque nonummy', NULL, NULL),
+	(7, 9, 3, 3, 'fermentum metus. Aenean sed pede', NULL, NULL),
+	(8, 9, 25, 4, 'tincidunt, neque vitae semper egestas,', NULL, NULL),
+	(9, 12, 6, 3, 'imperdiet dictum magna. Ut tincidunt', NULL, NULL),
+	(10, 5, 5, 2, 'urna justo faucibus lectus, a', NULL, NULL),
+	(11, 5, 4, 4, 'ante. Nunc mauris sapien, cursus', NULL, NULL),
+	(12, 9, 13, 1, 'egestas blandit. Nam nulla magna,', NULL, NULL),
+	(13, 2, 3, 3, 'Donec sollicitudin adipiscing ligula. Aenean', NULL, NULL),
+	(14, 3, 13, 3, 'adipiscing, enim mi tempor lorem,', NULL, NULL),
+	(15, 12, 20, 3, 'Pellentesque habitant morbi tristique senectus', NULL, NULL),
+	(16, 2, 20, 2, 'vel turpis. Aliquam adipiscing lobortis', NULL, NULL),
+	(17, 8, 13, 2, 'gravida mauris ut mi. Duis', NULL, NULL),
+	(18, 3, 27, 3, 'sit amet, consectetuer adipiscing elit.', NULL, NULL),
+	(19, 8, 8, 4, 'ultricies sem magna nec quam.', NULL, NULL),
+	(20, 7, 30, 5, 'Proin sed turpis nec mauris', NULL, NULL);
+/*!40000 ALTER TABLE `places_ratings` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.projects
+CREATE TABLE IF NOT EXISTS `projects` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `place_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_projects_places1_idx` (`place_id`),
+  CONSTRAINT `fk_projects_places1` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.projects: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `projects` DISABLE KEYS */;
+/*!40000 ALTER TABLE `projects` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.states
+CREATE TABLE IF NOT EXISTS `states` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `abbrv` varchar(3) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.states: ~27 rows (aproximadamente)
+/*!40000 ALTER TABLE `states` DISABLE KEYS */;
+INSERT IGNORE INTO `states` (`id`, `name`, `abbrv`, `created_at`, `modified_at`) VALUES
+	(1, 'Acre', 'AC', NULL, NULL),
+	(2, 'Alagoas', 'AL', NULL, NULL),
+	(3, 'Amazonas', 'AM', NULL, NULL),
+	(4, 'Amapá', 'AP', NULL, NULL),
+	(5, 'Bahia', 'BA', NULL, NULL),
+	(6, 'Ceará', 'CE', NULL, NULL),
+	(7, 'Distrito Federal', 'DF', NULL, NULL),
+	(8, 'Espírito Santo', 'ES', NULL, NULL),
+	(9, 'Goiás', 'GO', NULL, NULL),
+	(10, 'Maranhão', 'MA', NULL, NULL),
+	(11, 'Minas Gerais', 'MG', NULL, NULL),
+	(12, 'Mato Grosso do Sul', 'MS', NULL, NULL),
+	(13, 'Mato Grosso', 'MT', NULL, NULL),
+	(14, 'Pará', 'PA', NULL, NULL),
+	(15, 'Paraíba', 'PB', NULL, NULL),
+	(16, 'Pernambuco', 'PE', NULL, NULL),
+	(17, 'Piauí', 'PI', NULL, NULL),
+	(18, 'Paraná', 'PR', NULL, NULL),
+	(19, 'Rio de Janeiro', 'RJ', NULL, NULL),
+	(20, 'Rio Grande do Norte', 'RN', NULL, NULL),
+	(21, 'Rondônia', 'RO', NULL, NULL),
+	(22, 'Roraima', 'RR', NULL, NULL),
+	(23, 'Rio Grande do Sul', 'RS', NULL, NULL),
+	(24, 'Santa Catarina', 'SC', NULL, NULL),
+	(25, 'Sergipe', 'SE', NULL, NULL),
+	(26, 'São Paulo', 'SP', NULL, NULL),
+	(27, 'Tocantins', 'TO', NULL, NULL);
+/*!40000 ALTER TABLE `states` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `address_id` int DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `first_name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `lat` varchar(255) DEFAULT NULL,
+  `lng` varchar(255) DEFAULT NULL,
+  `email` varchar(75) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `photo` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `profile` enum('COMMON','CORPORATE','NGO') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'COMMON',
+  `cnpj` bigint DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_people_addresses1_idx` (`address_id`),
+  CONSTRAINT `fk_people_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.users: ~34 rows (aproximadamente)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT IGNORE INTO `users` (`id`, `address_id`, `password`, `first_name`, `last_name`, `lat`, `lng`, `email`, `photo`, `profile`, `cnpj`, `created_at`, `modified_at`) VALUES
+	(1, 1, 'NPP53GVF7OH', 'James', 'Ciara', '47.676957184', '-155.1380662272', 'nullam.nisl@protonmail.net', '362733', 'COMMON', NULL, NULL, NULL),
+	(2, 2, 'VTX23BSW8SX', 'Constance', 'Zoe', '-49.9532479488', '-62.267011072', 'at.pretium.aliquet@hotmail.couk', '938224', 'COMMON', NULL, NULL, NULL),
+	(3, 3, 'XJD45OVU0DM', 'Dennis', 'Slade', '47.6430414848', '26.5859274752', 'arcu@aol.org', '26180', 'COMMON', NULL, NULL, NULL),
+	(4, 4, 'FQN53RIQ8NM', 'Laura', 'Maxwell', '89.6231320576', '-4.8527783936', 'eget.dictum@hotmail.ca', '475804', 'COMMON', NULL, NULL, NULL),
+	(5, 5, 'JQC34UCV6KF', 'Isaac', 'Philip', '0.4234674176', '-35.0242163712', 'est@icloud.couk', '766984', 'COMMON', NULL, NULL, NULL),
+	(6, 6, 'LYK55IJT6XP', 'Thane', 'Irma', '61.2681810944', '-102.3845732352', 'leo.vivamus.nibh@outlook.net', '62133-17681', 'COMMON', NULL, NULL, NULL),
+	(7, 7, 'JCP90XUQ8QA', 'Damon', 'Anastasia', '-82.2153084928', '-74.3639888896', 'nunc.pulvinar.arcu@outlook.com', '71331', 'CORPORATE', 51452636931721, NULL, NULL),
+	(8, 8, 'DOW03HJH8IE', 'Helen', 'Hedy', '-65.1151645696', '5.118338048', 'erat.sed@icloud.couk', '58402-061', 'COMMON', NULL, NULL, NULL),
+	(9, 9, 'NFW97WYX8RL', 'Hayden', 'Tanek', '-16.7405508608', '-131.1967655936', 'a.enim@protonmail.net', '13511', 'NGO', 88993574008310, NULL, NULL),
+	(10, 10, 'YHN11PQW1UO', 'Byron', 'Meghan', '-70.0354312192', '164.9466617856', 'neque.venenatis.lacus@google.com', '36273', 'COMMON', NULL, NULL, NULL),
+	(11, 1, 'FMY33CJL5YS', 'Ryan', 'Alika', '54.6694523904', '-83.4148770816', 'in.molestie@yahoo.org', 'E4U 5KO', 'CORPORATE', 10238039667445, NULL, NULL),
+	(12, 12, 'QEW42DBW5CI', 'Philip', 'Justin', '43.8789914624', '12.1948004352', 'ultrices.mauris@outlook.com', '72162', 'COMMON', NULL, NULL, NULL),
+	(13, 13, 'QWV38SVC6WC', 'Hayes', 'Kim', '-42.4958154752', '-6.5086831616', 'pharetra.nam@yahoo.net', '345313', 'CORPORATE', NULL, NULL, NULL),
+	(14, 14, 'TVQ58CLF7ZL', 'Virginia', 'Dexter', '28.375251456', '121.65071104', 'arcu.sed@icloud.com', '91450', 'CORPORATE', NULL, NULL, NULL),
+	(15, 15, 'FVL22DLG2LI', 'Alexander', 'Emerald', '67.7322497024', '-104.5063728128', 'eros.turpis@protonmail.couk', '236805', 'COMMON', NULL, NULL, NULL),
+	(16, 16, 'CIM54KIT6CT', 'Tatyana', 'Arsenio', '75.8538203136', '150.3853743104', 'tempus@protonmail.org', '3125', 'CORPORATE', NULL, NULL, NULL),
+	(17, 17, 'KAH25YDV3QV', 'Henry', 'Anthony', '47.5754519552', '29.0187010048', 'purus.maecenas@icloud.ca', '684145', 'CORPORATE', NULL, NULL, NULL),
+	(18, 18, 'SOJ81CDU2AM', 'Adara', 'Sylvester', '42.1958238208', '-95.8647218176', 'a@yahoo.couk', '5122 PL', 'CORPORATE', NULL, NULL, NULL),
+	(19, 19, 'QIW72RFY6PJ', 'Carolyn', 'Ila', '45.9352600576', '-150.598486016', 'massa.lobortis@outlook.com', '27926', 'COMMON', NULL, NULL, NULL),
+	(20, 20, 'LNA11GJS2XQ', 'Hillary', 'Alan', '-73.4155205632', '-124.7342144512', 'semper.cursus@aol.com', 'G1Y 4J4', 'COMMON', NULL, NULL, NULL),
+	(21, 21, 'ZEH88XUG1EF', 'Alvin', 'Lila', '-21.5936425984', '-103.3192731648', 'neque.tellus@icloud.com', '6528', 'CORPORATE', NULL, NULL, NULL),
+	(22, 22, 'FDS55GUN9PK', 'Diana', 'Alice', '-26.8146646016', '-151.8992692224', 'sit@icloud.org', '94516-23774', 'COMMON', NULL, NULL, NULL),
+	(23, 23, 'HIY57TFZ3LK', 'Joseph', 'Dustin', '22.6232295424', '-158.1429690368', 'elementum.dui@aol.net', '278135', 'COMMON', NULL, NULL, NULL),
+	(24, 24, 'BQJ31WDG4IK', 'Nyssa', 'Yvette', '-10.9584787456', '-153.7174232064', 'cum@hotmail.couk', '316434', 'COMMON', NULL, NULL, NULL),
+	(25, 25, 'IFY51NLQ4WO', 'Stewart', 'Jakeem', '74.6767229952', '-54.7878900736', 'quisque.fringilla.euismod@hotmail.ca', '28460', 'CORPORATE', NULL, NULL, NULL),
+	(26, 26, 'ZUE98JHB4KR', 'Molly', 'Patrick', '-19.670466048', '-110.3723838464', 'convallis@icloud.com', '2675', 'CORPORATE', NULL, NULL, NULL),
+	(27, 27, 'ZNG23MYV1XS', 'Fatima', 'Eagan', '80.826730496', '-74.3342885888', 'nulla.aliquet@outlook.com', '465518', 'COMMON', NULL, NULL, NULL),
+	(28, 28, 'QCI21RLD8PF', 'Candace', 'Len', '-38.5018028032', '17.163114496', 'quisque.libero@aol.net', '84183', 'CORPORATE', NULL, NULL, NULL),
+	(29, 29, 'RHR98NWT3XX', 'Uriah', 'Chadwick', '-36.1771086848', '-125.7250972672', 'nam.porttitor@protonmail.net', '3321', 'COMMON', NULL, NULL, NULL),
+	(30, 30, 'ananda', 'Elaine', 'India', '-17.6414240768', '-59.8860419072', 'ananda@ananda.com', '29353', 'COMMON', NULL, NULL, NULL),
+	(36, NULL, 'aaaa', 'aaaa', 'aaaa', '1234', '1234', 'aaaa@aaaa.com', NULL, 'COMMON', NULL, '2021-11-25 01:13:23', NULL),
+	(37, NULL, 'teste', 'sakns', 'wefe', '1234', '4321', '1', NULL, 'COMMON', NULL, '2021-11-25 01:20:41', NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela outism.users_favorite_places
+CREATE TABLE IF NOT EXISTS `users_favorite_places` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `place_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`,`user_id`,`place_id`),
+  KEY `fk_users_favorite_places_users1_idx` (`user_id`),
+  KEY `fk_users_favorite_places_places1_idx` (`place_id`),
+  CONSTRAINT `fk_users_favorite_places_places1` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`),
+  CONSTRAINT `fk_users_favorite_places_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+
+-- Copiando dados para a tabela outism.users_favorite_places: ~20 rows (aproximadamente)
+/*!40000 ALTER TABLE `users_favorite_places` DISABLE KEYS */;
+INSERT IGNORE INTO `users_favorite_places` (`id`, `user_id`, `place_id`, `created_at`, `modified_at`) VALUES
+	(1, 1, 1, NULL, NULL),
+	(2, 18, 15, NULL, NULL),
+	(3, 16, 13, NULL, NULL),
+	(4, 6, 5, NULL, NULL),
+	(5, 23, 5, NULL, NULL),
+	(6, 20, 4, NULL, NULL),
+	(7, 3, 9, NULL, NULL),
+	(8, 28, 15, NULL, NULL),
+	(9, 6, 5, NULL, NULL),
+	(10, 21, 12, NULL, NULL),
+	(11, 22, 6, NULL, NULL),
+	(12, 22, 12, NULL, NULL),
+	(13, 8, 6, NULL, NULL),
+	(14, 26, 10, NULL, NULL),
+	(15, 23, 10, NULL, NULL),
+	(16, 23, 9, NULL, NULL),
+	(17, 28, 7, NULL, NULL),
+	(18, 7, 2, NULL, NULL),
+	(19, 21, 14, NULL, NULL),
+	(20, 23, 3, NULL, NULL);
+
+SET foreign_key_checks = 1;
